@@ -71,7 +71,6 @@ def _completion_with_retries(*args, **kwargs):
                     from openai import OpenAI
                     client = OpenAI(
                         api_key=kwargs["api_key"],  
-                        api_version=kwargs["api_version"]
                     )
                     response = client.chat.completions.create(messages=kwargs["messages"], model=kwargs["model"], temperature=kwargs["temperature"], max_tokens=kwargs["max_tokens"])
                 return response.choices[0].message.content, dict(response.usage)
@@ -86,7 +85,6 @@ def _completion_with_retries(*args, **kwargs):
             time.sleep(secs)
             n += 1
             continue
-        return response
 
 
 async def _completion_with_retries_async(*args, **kwargs):
@@ -106,7 +104,6 @@ async def _completion_with_retries_async(*args, **kwargs):
                     from openai import AsyncOpenAI
                     client = AsyncOpenAI(
                         api_key=kwargs["api_key"],  
-                        api_version=kwargs["api_version"]
                     )
                     response = await client.chat.completions.create(messages=kwargs["messages"], model=kwargs["model"], temperature=kwargs["temperature"], max_tokens=kwargs["max_tokens"])
                 return response.choices[0].message.content, dict(response.usage)
@@ -121,7 +118,6 @@ async def _completion_with_retries_async(*args, **kwargs):
             await asyncio.sleep(secs)
             n += 1
             continue
-        return response
 
 class OutputStructure(str, Enum):
     """OutputStructure defines what structure the QAs should be written to file in."""
