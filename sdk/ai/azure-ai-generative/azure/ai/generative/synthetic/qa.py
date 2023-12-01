@@ -244,6 +244,7 @@ class QADataGenerator:
             messages=self._get_messages_for_modify_conversation(questions),
             **self._chat_completion_params,
         )
+
         modified_questions, _ = self._parse_qa_from_response(content)
         # Keep proper nouns in first question of conversation
         modified_questions[0] = questions[0]
@@ -335,6 +336,7 @@ class QADataGenerator:
             messages=self._get_messages_for_modify_conversation(questions),
             **self._chat_completion_params,
         )
+
         modified_questions, _ = self._parse_qa_from_response(content)
         # Keep proper nouns in first question of conversation
         modified_questions[0] = questions[0]
